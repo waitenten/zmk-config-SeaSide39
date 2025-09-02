@@ -18,7 +18,39 @@
 };
 
 / {
-    combos { compatible = "zmk,combos"; };
+    combos {
+        compatible = "zmk,combos";
+
+        mb1 {
+            bindings = <&mkp MB1>;
+            key-positions = <16 17>;
+        };
+
+        mb2 {
+            bindings = <&mkp MB2>;
+            key-positions = <17 18>;
+        };
+
+        up {
+            bindings = <&kp UP_ARROW>;
+            key-positions = <6 8>;
+        };
+
+        dw {
+            bindings = <&kp DOWN_ARROW>;
+            key-positions = <16 18>;
+        };
+
+        le {
+            bindings = <&kp LEFT_ARROW>;
+            key-positions = <6 7>;
+        };
+
+        ri {
+            bindings = <&kp RIGHT_ARROW>;
+            key-positions = <7 8>;
+        };
+    };
 
     macros {
         to_layer_0: to_layer_0 {
