@@ -103,10 +103,10 @@
 
         SYMBOL {
             bindings = <
-&kp PRCNT  &kp DOLLAR  &kp LEFT_BRACKET      &kp RIGHT_BRACKET      &trans                               &kp BSLH        &kp LEFT_BRACE        &kp RIGHT_BRACE        &kp LESS_THAN  &kp GREATER_THAN
-&kp AT     &kp HASH    &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &trans                               &kp UNDERSCORE  &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp SEMI       &kp COLON
-&kp GRAVE  &kp TILDE   &kp LEFT_BRACE        &kp RIGHT_BRACE        &kp QUESTION                         &kp PIPE        &kp LBKT              &kp RBKT               &kp SQT        &kp DOUBLE_QUOTES
-&trans     &trans      &trans                &trans                 &trans        &trans      &kp COMMA  &kp PERIOD                                                                  &kp ESC
+&kp PRCNT  &kp DOLLAR  &kp LEFT_BRACKET      &kp RIGHT_BRACKET      &trans                               &kp RA(RIGHT_ARROW)  &kp PAGE_UP     &kp UP_ARROW    &kp HOME         &kp K_WWW
+&kp AT     &kp HASH    &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &trans                               &kp LA(LEFT_ARROW)   &kp LEFT_ARROW  &kp DOWN_ARROW  &kp RIGHT_ARROW  &kp RC(RS(T))
+&kp GRAVE  &kp TILDE   &kp LEFT_BRACE        &kp RIGHT_BRACE        &kp QUESTION                         &kp RC(F4)           &kp PAGE_DOWN   &kp RBKT        &kp END          &trans
+&trans     &trans      &trans                &trans                 &trans        &trans      &kp COMMA  &kp PERIOD                                                            &kp ESC
             >;
         };
 
