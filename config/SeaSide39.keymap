@@ -50,6 +50,21 @@
             bindings = <&kp RIGHT_ARROW>;
             key-positions = <7 8>;
         };
+
+        esc {
+            bindings = <&kp ESCAPE>;
+            key-positions = <0 1>;
+        };
+
+        tab {
+            bindings = <&kp TAB>;
+            key-positions = <10 11>;
+        };
+
+        caps {
+            bindings = <&kp CLCK>;
+            key-positions = <20 21>;
+        };
     };
 
     macros {
