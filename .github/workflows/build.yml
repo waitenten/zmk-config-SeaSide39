@@ -1,5 +1,46 @@
-on: [push, pull_request, workflow_dispatch]
+name: Build ZMK Firmware
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
 
 jobs:
   build:
-    uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@main
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          submodules: recursive
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: |
+          sudo apt update
+          sudo apt install -y git cmake ninja-build gperf \
+            ccache dfu-util device-tree-compiler wget \
+            python3-pip python3-setuptools python3-wheel xz-utils
+          pip3 install west
+
+      - name: Initialize west and update
+        run: |
+          cd zmk
+          west init -l
+          west update
+          west zephyr-export
+
+      - name: Build firmware
+        run: |
+          west build -s zmk/app -d build/firmware -b seeeduino_xiao_ble -- -DZMK_CONFIG=${{ github.workspace }}
+
+      - name: Upload firmware
+        uses: actions/upload-artifact@v3
+        with:
+          name: firmware
+          path: build/firmware/zephyr/zmk.uf2
