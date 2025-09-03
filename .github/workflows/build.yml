@@ -1,16 +1,16 @@
-name: Build ZMK Firmware
+name: ZMK Custom Build
 
 on:
   push:
     branches: [main]
-  pull_request:
-    branches: [main]
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout repository
+      - name: Checkout Config Repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
@@ -18,15 +18,16 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.x'
+          python-version: '3.10'
 
-      - name: Install dependencies
+      - name: Install Dependencies
         run: |
           sudo apt update
-          sudo apt install -y git cmake ninja-build gperf \
-            ccache dfu-util device-tree-compiler wget \
-            python3-pip python3-setuptools python3-wheel xz-utils
+          sudo apt install -y cmake ninja-build gperf ccache dfu-util device-tree-compiler wget \
+            python3-pip python3-setuptools python3-wheel xz-utils file make gcc gcc-multilib \
+            libncurses-dev libffi-dev libssl-dev libusb-1.0-0-dev
           pip3 install west
+          pip3 install pyelftools
 
       - name: Install Zephyr SDK
         run: |
@@ -37,18 +38,35 @@ jobs:
           echo "ZEPHYR_TOOLCHAIN_VARIANT=zephyr" >> $GITHUB_ENV
           echo "ZEPHYR_SDK_INSTALL_DIR=$HOME/zephyr-sdk" >> $GITHUB_ENV
 
-      - name: Initialize west and update
+      - name: Cache Zephyr & Modules
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.west
+            ~/zephyrproject
+            ~/.cache
+          key: ${{ runner.os }}-zmk-${{ hashFiles('**/west.yml') }}
+          restore-keys: |
+            ${{ runner.os }}-zmk-
+
+      - name: Initialize West
         run: |
           west init -l config
           west update
           west zephyr-export
 
-      - name: Build firmware
+      - name: Build Seaside39 Right (master)
         run: |
-          west build -s zmk/app -d build/firmware -b seeeduino_xiao_ble -- -DZMK_CONFIG=${{ github.workspace }}/config
+          west build -s zmk/app -d build/right -b seeeduino_xiao_ble -- -DSHIELD=Seaside39_R -DZMK_CONFIG=${{ github.workspace }}/config
 
-      - name: Upload firmware
+      - name: Build Seaside39 Left (peripheral)
+        run: |
+          west build -s zmk/app -d build/left -b seeeduino_xiao_ble -- -DSHIELD=Seaside39_L -DZMK_CONFIG=${{ github.workspace }}/config
+
+      - name: Upload Firmware
         uses: actions/upload-artifact@v4
         with:
           name: firmware
-          path: build/firmware/zephyr/zmk.uf2
+          path: |
+            build/right/zephyr/zmk.uf2
+            build/left/zephyr/zmk.uf2
