@@ -48,5 +48,5 @@ jobs:
           path: build/firmware/zephyr/zmk.uf2
 
       - name: Clone ZMK firmware
-        run: |
-        git clone --depth 1 https://github.com/zmkfirmware/zmk.git zmk
+  run: |
+    git clone --depth 1 https://github.com/zmkfirmware/zmk.git zmk
