@@ -55,13 +55,13 @@ jobs:
           west update
           west zephyr-export
 
-      - name: Build Seaside39 Right (master)
+      - name: Build SeaSide39 Right (master)
         run: |
-          west build -s zmk/app -d build/right -b seeeduino_xiao_ble -- -DSHIELD=Seaside39_R -DZMK_CONFIG=${{ github.workspace }}/config
+          west build -s zmk/app -d build/right -b seeeduino_xiao_ble -- -DSHIELD=SeaSide39_R -DZMK_CONFIG=${{ github.workspace }}/config
 
-      - name: Build Seaside39 Left (peripheral)
+      - name: Build SeaSide39 Left (peripheral)
         run: |
-          west build -s zmk/app -d build/left -b seeeduino_xiao_ble -- -DSHIELD=Seaside39_L -DZMK_CONFIG=${{ github.workspace }}/config
+          west build -s zmk/app -d build/left -b seeeduino_xiao_ble -- -DSHIELD=SeaSide39_L -DZMK_CONFIG=${{ github.workspace }}/config
 
       - name: Upload Firmware
         uses: actions/upload-artifact@v4
