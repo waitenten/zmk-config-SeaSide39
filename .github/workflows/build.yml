@@ -13,8 +13,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          submodules: true
           fetch-depth: 0
+
+      - name: Clone ZMK firmware
+        run: |
+          git clone --depth 1 https://github.com/zmkfirmware/zmk.git zmk
 
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -31,7 +34,7 @@ jobs:
 
       - name: Initialize west and update
         run: |
-          cd ${{ github.workspace }}/zmk
+          cd zmk
           ls -la
           west init -l
           west update
@@ -46,7 +49,3 @@ jobs:
         with:
           name: firmware
           path: build/firmware/zephyr/zmk.uf2
-
-      - name: Clone ZMK firmware
-  run: |
-    git clone --depth 1 https://github.com/zmkfirmware/zmk.git zmk
