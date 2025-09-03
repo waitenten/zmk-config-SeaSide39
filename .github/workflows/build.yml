@@ -17,7 +17,7 @@ jobs:
 
       - name: Clone ZMK firmware
         run: |
-          git clone https://github.com/zmkfirmware/zmk.git zmk
+          git clone --branch develop https://github.com/zmkfirmware/zmk.git zmk
 
       - name: Set up Python
         uses: actions/setup-python@v4
