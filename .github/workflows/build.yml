@@ -30,7 +30,7 @@ jobs:
 
       - name: Initialize west and update
         run: |
-          cd zmk
+          cd ${{ github.workspace }}/zmk
           west init -l
           west update
           west zephyr-export
