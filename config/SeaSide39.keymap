@@ -80,6 +80,31 @@
             bindings = <&kp RIGHT_GUI>;
             key-positions = <15 16>;
         };
+
+        ex {
+            bindings = <&kp EXCLAMATION>;
+            key-positions = <24 7>;
+        };
+
+        sy {
+            bindings = <&kp HASH>;
+            key-positions = <11 5>;
+        };
+
+        do {
+            bindings = <&kp DOLLAR>;
+            key-positions = <12 8>;
+        };
+
+        pa {
+            bindings = <&kp PERCENT>;
+            key-positions = <9 10>;
+        };
+
+        an {
+            bindings = <&kp AMPERSAND>;
+            key-positions = <10 12>;
+        };
     };
 
     macros {
