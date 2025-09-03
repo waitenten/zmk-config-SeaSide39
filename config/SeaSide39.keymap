@@ -105,6 +105,21 @@
             bindings = <&kp AMPERSAND>;
             key-positions = <10 12>;
         };
+
+        ye {
+            bindings = <&kp INT_YEN>;
+            key-positions = <5 2>;
+        };
+
+        at {
+            bindings = <&kp AT_SIGN>;
+            key-positions = <10 4>;
+        };
+
+        ub {
+            bindings = <&kp UNDERSCORE>;
+            key-positions = <6 24>;
+        };
     };
 
     macros {
