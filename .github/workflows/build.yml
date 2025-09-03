@@ -40,7 +40,7 @@ jobs:
           west build -s zmk/app -d build/firmware -b seeeduino_xiao_ble -- -DZMK_CONFIG=${{ github.workspace }}
 
       - name: Upload firmware
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: firmware
           path: build/firmware/zephyr/zmk.uf2
