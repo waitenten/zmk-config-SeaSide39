@@ -28,6 +28,7 @@ jobs:
             libncurses-dev libffi-dev libssl-dev libusb-1.0-0-dev unzip
           pip3 install west
           pip3 install pyelftools
+          pip3 install protobuf grpcio-tools
 
       - name: Install protoc
         run: |
