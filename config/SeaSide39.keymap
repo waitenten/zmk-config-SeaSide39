@@ -201,10 +201,10 @@
 
         SCROLL {
             bindings = <
-&trans          &trans  &trans  &trans             &trans                                   &trans  &trans  &trans  &trans  &trans
-&trans          &trans  &trans  &trans             &trans                                   &trans  &trans  &trans  &trans  &trans
-&trans          &trans  &trans  &trans             &trans                                   &trans  &trans  &trans  &trans  &trans
-&kp LA(C_QUIT)  &trans  &trans  &kp C_VOLUME_DOWN  &kp C_MUTE  &kp C_VOLUME_UP      &trans  &trans                          &trans
+&trans  &trans  &trans  &trans             &trans                                   &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans             &trans                                   &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans             &trans                                   &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &kp C_VOLUME_DOWN  &kp C_MUTE  &kp C_VOLUME_UP      &trans  &trans                          &trans
             >;
         };
 
